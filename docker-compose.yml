@@ -1,0 +1,32 @@
+version: '2'
+services:
+  php:
+    build: ./docker/php
+    links:
+      - mysql
+    container_name: php-common
+    volumes:
+      - ./chameleon-system:/var/www
+  nginx:
+    container_name: nginx-common
+    image: nginx:latest
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./hosts:/etc/nginx/conf.d:ro
+      - ./chameleon-system:/var/www
+      - ./logs:/var/log/nginx
+    links:
+      - php
+  mysql:
+    image: mysql:5.7
+    ports:
+      - "3307:3306"
+    volumes:
+      - ./mysql:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: database
+      MYSQL_USER: user
+      MYSQL_PASSWORD: pass 
