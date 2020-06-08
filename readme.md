@@ -19,8 +19,9 @@ git clone https://github.com/kzorluoglu/chameleon-docker.git
 docker-compose up -d #-d run in to the background
 ```
 
-4. Run composer install
+4. Run composer install in Chameleon Project
 ```bash
+cd chameleon-system
 composer install
 ```
 
