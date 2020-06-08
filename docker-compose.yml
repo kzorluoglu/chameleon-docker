@@ -1,32 +1,21 @@
-version: '2'
+version: '3'
 services:
-  php:
-    build: ./docker/php
+  php-apache:
+    build:
+        context: ./docker/php
+    ports: 
+      - 80:80
     links:
-      - mysql
-    container_name: php-common
+      - mariadb
     volumes:
-      - ./chameleon-system:/var/www
-  nginx:
-    container_name: nginx-common
-    image: nginx:latest
-    ports:
-      - "80:80"
-      - "443:443"
+      - ./chameleon-system:/var/www/html
+      - ./logs:/var/log/apache2
+  mariadb:
+    image: mariadb:10.1
     volumes:
-      - ./hosts:/etc/nginx/conf.d:ro
-      - ./chameleon-system:/var/www
-      - ./logs:/var/log/nginx
-    links:
-      - php
-  mysql:
-    image: mysql:5.7
-    ports:
-      - "3307:3306"
-    volumes:
-      - ./mysql:/var/lib/mysql
+      - ./mariadb:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: database
       MYSQL_USER: user
-      MYSQL_PASSWORD: pass 
+      MYSQL_PASSWORD: pass
