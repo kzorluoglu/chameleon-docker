@@ -33,10 +33,10 @@ enjoy
 # Debug
 
 ## Xdebug
-1. Change the **YOURDOCKERIPADRESS** and **YOURIDEKEY** placeholders with yours in **/docker/php/php.ini**
+1. Change the **YOURDOCKERIPADRESSE** and **YOURIDEKEY** placeholders with yours in **/docker/php/php.ini**
 ```bash
 xdebug...
-xdebug.remote_host=YOURDOCKERIPADRESS
+xdebug.remote_host=YOURDOCKERIPADRESSE
 xdebug.idekey=YOURIDEKEY
 xdebug...
 ```
