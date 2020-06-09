@@ -23,15 +23,49 @@ docker-compose up -d #-d run in to the background
 ```bash
 cd chameleon-system
 composer install
-
-database_host (localhost): mariadb
-database_port (3306): 3306
-database_name (shp_dmo61): database
-database_user (shp_dmo61): user
-database_password (insert-password): pass
 ```
 
 5. Open  your Chameleon via http://localhost in your browser
 ```bash
 enjoy
 ```
+
+# Debug
+
+## Xdebug
+1. Change the **YOURDOCKERIPADRESS** and **YOURIDEKEY** placeholders with yours in **/docker/php/php.ini**
+```bash
+xdebug...
+xdebug.remote_host=YOURDOCKERIPADRESS
+xdebug.idekey=YOURIDEKEY
+xdebug...
+```
+2. And Configure your IDE with idekey and remote_host configurations.
+3. Enjoj
+
+## Xdebug with VSCode
+1. Install [PHP Debug](https://marketplace.visualstudio.com/items?itemName=felixfbecker.php-debug) Extension
+2. Replace your **YOURIDEKEY** with **VSCODE** in **/docker/phpphp.ini**
+```
+xdebug.remote_host=YOURDOCKERIPADRESS
+xdebug.idekey=VSCODE
+```
+3. Create .vscode/launch.json manually or Create over Run Panel
+4. Replace your launch.json
+```json
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Listen for XDebug",
+            "type": "php",
+            "request": "launch",
+            "port": 9000,
+            "pathMappings": {
+                "/var/www/html": "${workspaceFolder}/chameleon-system"
+            }
+        }
+    ]
+}
+```
+5. Enjoj
