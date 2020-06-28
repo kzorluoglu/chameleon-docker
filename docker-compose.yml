@@ -7,6 +7,7 @@ services:
       - 80:80
     links:
       - mariadb
+      - memcache
     volumes:
       - ./chameleon-system:/var/www/html
       - ./logs:/var/log/apache2
@@ -19,3 +20,6 @@ services:
       MYSQL_DATABASE: database
       MYSQL_USER: user
       MYSQL_PASSWORD: pass
+  memcache:
+    image: memcached:1.4
+    command: ["memcached", "-m", "64"]
