@@ -14,6 +14,7 @@ RUN apt-get update && apt-get install -y \
       libzip-dev \
       libicu-dev \
       libonig-dev \
+      libtidy-dev \
       && docker-php-ext-install -j$(nproc) iconv mbstring mysqli pdo_mysql zip tidy \
       && docker-php-ext-configure gd --with-jpeg=/usr/include/ --with-freetype=/usr/include/ \
       && docker-php-ext-install -j$(nproc) gd
