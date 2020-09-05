@@ -1,0 +1,8 @@
+# Only folders
+/logs/*
+!logs/.gitkeep
+/mariadb/*
+!mariadb/.gitkeep
+
+# IDE's
+.vscode
