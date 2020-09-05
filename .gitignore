@@ -3,6 +3,7 @@
 !logs/.gitkeep
 /mariadb/*
 !mariadb/.gitkeep
+/chameleon-system
 
 # IDE's
 .vscode
