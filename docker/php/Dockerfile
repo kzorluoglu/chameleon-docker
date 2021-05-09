@@ -25,6 +25,7 @@ RUN curl -Ss https://getcomposer.org/installer | php -- --install-dir=/usr/local
 RUN rm -rfv /etc/apache2/sites-enabled/*.conf
 COPY 000-default.conf /etc/apache2/sites-available/000-default.conf
 RUN ln -s /etc/apache2/sites-available/000-default.conf /etc/apache2/sites-enabled/000-default.conf
+CMD echo "ServerName localhost" >> /etc/apache2/apache2.conf
 CMD ["apachectl","-D","FOREGROUND"]
 RUN a2enmod rewrite
 RUN usermod -u 1000 www-data

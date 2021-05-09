@@ -2,8 +2,8 @@ version: '3'
 services:
   php-apache:
     build:
-        context: ./docker/php
-    ports: 
+      context: ./docker/php
+    ports:
       - 80:80
     links:
       - mariadb
@@ -22,4 +22,13 @@ services:
       MYSQL_PASSWORD: pass
   memcache:
     image: memcached:1.4
-    command: ["memcached", "-m", "64"]
+    command: [ "memcached", "-m", "64" ]
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    restart: always
+    environment:
+      PMA_HOST: mariadb
+      PMA_USER: root
+      PMA_PASSWORD: root
+    ports:
+      - "8080:80"
